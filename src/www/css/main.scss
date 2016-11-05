@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+/*-------------------
+  Device Breakpoints
+--------------------*/
+$mobileBreakpoint            : 320px;
+$tabletBreakpoint            : 768px;
+$computerBreakpoint          : 992px;
+$largeMonitorBreakpoint      : 1200px;
+$widescreenMonitorBreakpoint : 1920px;
+
+/* Responsive */
+$largestMobileScreen : ($tabletBreakpoint - 1px);
+$largestTabletScreen : ($computerBreakpoint - 1px);
+$largestSmallMonitor : ($largeMonitorBreakpoint - 1px);
+$largestLargeMonitor : ($widescreenMonitorBreakpoint - 1px);
+
+$defaultPadding: 1em;
+
+/* This theme */
+$main-color: #40bfff;
+$success-color: #2db338;
+$warning-color: #ff4040;
+/* Maps */
+$maps-btn-color: (
+        primary: $main-color,
+        success: $success-color,
+        warning: $warning-color,
+        transparent: transparent
+);
+
+* {
+  padding: 0;
+  margin: 0;
+}
+html, body {
+  height: 100%;
+  font-size: 14px;
+}
+body {
+  background: black;
+  color: white;
+  font-family: Roboto;
+  //padding-top: $defaultPadding;
+}
+#app, .root {
+  height: 100%;
+}
+.wrap-stopwatches-application {
+  height: 100%;
+  min-height: 400px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+
+  padding: $defaultPadding;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.5s ease-out;
+
+  @media only screen and (min-width: $tabletBreakpoint) and (max-width: $largestTabletScreen) {
+    width: 95%;
+  }
+  @media only screen and (min-width: $computerBreakpoint) and (max-width: $largestSmallMonitor) {
+    width: 85%;
+  }
+  @media only screen and (min-width: $largeMonitorBreakpoint) and (max-width: 1499px) {
+    width: 70%;
+  }
+  @media only screen and (min-width: 1500px) {
+    width: 50%;
+  }
+}
+.grid {
+  display: flex;
+  width: 100%;
+}
+.column {
+  flex-grow: 1;
+  padding: $defaultPadding * 0.5;
+}
+.test-content {
+  background: #ccc;
+}
+.full-width {
+  width: 100%;
+}
+.text-align-right {
+  text-align: right;
+}
+.one-of-three-column {
+  width: 33%;
+  flex-grow: 0;
+}
+.one-of-two-column {
+  width: 50%;
+}
+/* Stopwatches */
+.stopwatches, .laps {
+  background-color: white;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+.head, .content {
+  padding: $defaultPadding;
+}
+.head {
+  background-color: $main-color;
+  color: white;
+  text-transform: uppercase;
+  position: relative;
+}
+.content {
+  color: black;
+  overflow-y: auto;
+}
+.stopwatches-content, .laps-content {
+  //min-height: 500px;
+  flex-grow: 1;
+}
+.stopwatches-content {
+  padding: 0;
+}
+.stopwatches__head-content {
+  text-align: center;
+}
+/* Stopwatch item */
+.column-manage {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.stopwatch-item-root {
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+  /*&:hover {
+
+  }
+  &:active {
+
+  }*/
+}
+.stopwatch-item-root__hovered {
+  background-color: transparentize(black,0.95);
+}
+.stopwatch-item-root__pressed {
+  background-color: transparentize(black,0.9);
+}
+.stopwatch-item-root__selected {
+  background-color: transparentize(black,0.85);
+}
+.stopwatch-item-title, .laps-item-text,
+.stopwatch-content-loading, .laps-content-non-selected {
+  font-weight: 700;
+  color: gray;
+  font-size: 1.3rem;
+}
+.stopwatch-content-loading, .laps-content-non-selected {
+  margin-top: $defaultPadding;
+  text-align: center;
+}
+.stopwatch-item-time {
+  font-weight: 900;
+  font-size: 2rem;
+}
+.stopwatches-add-new {
+  color: black;
+  padding: $defaultPadding;
+}
+
+/* Controls */
+.controls {
+  padding: $defaultPadding * 0.6;
+}
+.wrap-many-controls {
+  display: flex;
+  justify-content: center;
+  > .btn {
+    flex: 1;
+    &:first-child {
+      margin-right: 5px;
+    }
+    &:last-child {
+      margin-left: 5px;
+    }
+  }
+}
+.btn {
+  border: none;
+  padding: $defaultPadding;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  cursor: pointer;
+  outline: none;
+}
+.btn {
+  @each $maps, $color in $maps-btn-color {
+    &_#{$maps}{
+      transition: all 0.25s ease-out;
+      color: white;
+      background-color: $color;
+      &:hover {
+        background-color: lighten($color, 5%);
+      }
+      &:active {
+        background-color: darken($color, 5%);
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+      }
+    }
+  }
+}
+.btn:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+.btn_transparent {
+  &:hover {
+    background-color: rgba(255,255,255,0.2);
+  }
+  &:active {
+    background-color: rgba(0,0,0,0.1);
+  }
+}
+.btn__left-icon {
+  margin-right: 10px;
+}
+.btn-delete {
+  width: 90px;
+  height: 40px;
+}
+.btn-head-stopwatches {
+  position: absolute;
+  top: 0;
+  right: 0;
+  >.btn__right-icon {
+    margin-right: 0;
+  }
+}
+/* Laps */
+.head-laps {
+  padding: 0px;
+}
+.laps__head-content {
+  float: right;
+  padding-top: $defaultPadding;
+  padding-right: $defaultPadding;
+}
+.btn-head-laps, .btn-head-stopwatches {
+  font-size: 1rem;
+}
+/* Lap's Item */
+/* Current Stopwatch */
+.stopwatch-current-root {
+  color: black;
+  border-bottom: 2px solid transparentize($main-color, 0.7);
+  padding-top: $defaultPadding * 2;
+  padding-bottom: $defaultPadding * 2;
+}
+.stopwatch-current-title {
+  text-align: center;
+}
+.stopwatch-current-time {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
+.stopwatch-current-controls {
+  text-align: center;
+  > .btn {
+    margin-right: 20px;
+  }
+}
+.laps-item-root {
+  margin: 10px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.laps-item-text, .laps-item-line-wrap {
+  display: inline-block;
+}
+.laps-item-line-wrap {
+  flex: 1;
+  padding-left: 10px;
+}
+.laps-item-line {
+  background-color: $main-color;
+  width: 100%;
+  height: 3px;
+  transition: all 0.3s ease-out;
+}
